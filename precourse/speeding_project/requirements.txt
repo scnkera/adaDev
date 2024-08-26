@@ -1,0 +1,18 @@
+You are driving a car from another country in the United States. The speed limit is posted in miles per hour, but your car speedometer shows your speed in kilometers per hour.
+
+Write a function am_i_speeding that takes in a speed in units of kilometers per hour and a speed_limit in units of miles per hour. The function am_i_speeding should return
+
+True if you are speeding
+False if you are are not speeding
+None if speed or speed_limit is not a float or an int.
+The function am_i_speeding should use the following provided helper functions:
+
+convert_km_to_mi to convert the speed to miles per hour
+is_valid_num to validate that speed and speed_limit are a float or an int
+
+
+example input (speed, speed_limit)	example output (return value)
+100, 55	True
+80, 55	False
+"hello", 55	None
+100, "hello"	None
