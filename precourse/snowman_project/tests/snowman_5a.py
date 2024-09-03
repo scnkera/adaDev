@@ -40,10 +40,8 @@ def print_snowman_graphic(num_wrong_guesses):
         '-----------'
     ]
     
-    # Loop from 0 up to the minimum of num_wrong_guesses and SNOWMAN_WRONG_GUESSES
-    for i in range(min(num_wrong_guesses, SNOWMAN_WRONG_GUESSES)):
+    for i in range(SNOWMAN_WRONG_GUESSES - num_wrong_guesses, SNOWMAN_WRONG_GUESSES):
         print(SNOWMAN_GRAPHIC[i])
-
 
 def snowman():
     r = RandomWord()
@@ -55,62 +53,61 @@ def snowman():
 
     snowman_word_dict = build_word_dict(snowman_word)
     wrong_guesses_list = []
-    wrong_guesses_str = ""
 
+   
     while len(wrong_guesses_list) < SNOWMAN_WRONG_GUESSES:
-        all_letters_guessed = get_word_progress(snowman_word, snowman_word_dict) 
-         
-        if all_letters_guessed:
-            print("Congratulations, you win!")
-            break
-
         user_input = get_letter_from_user(snowman_word_dict, wrong_guesses_list) 
 
         if user_input in snowman_word_dict:
-            print(f'You guessed a letter that is in the word!')
+            print(f'Great Job! The letter {user_input} is in the word')
             snowman_word_dict[user_input] = True
         else:
             print(f'The letter {user_input} is not in the word')
             wrong_guesses_list.append(user_input)
-            wrong_guesses_str += f'{user_input} '
 
         print_snowman_graphic(len(wrong_guesses_list))
-        print_word_progress_string(snowman_word, snowman_word_dict)
-        # print(f"Wrong guesses: {wrong_guesses_list}")
-        print(f"Wrong guesses: {wrong_guesses_str}")
-        # print(snowman_word_dict)
-        # print(f'all_letters_guessed: {all_letters_guessed}')
 
-    if len(wrong_guesses_list) >= SNOWMAN_WRONG_GUESSES:
-        print(f"Game Over! You're out of guesses!")
+    # print_snowman_graphic(len(wrong_guesses_list))
+    
+    print(f"Wrong guesses: {wrong_guesses_list}")
+    print(f"Correct guesses: {snowman_word_dict}")
+
 
 def build_word_dict(snowman_word):
+    # snowman_word = "party"
     snowman_word_dict = {}
     # print(snowman_word)
     for letter in snowman_word:
+        # print(letter)
         if letter not in snowman_word_dict:
             snowman_word_dict[letter] = False
-    # print(snowman_word_dict)
+    print(snowman_word_dict)
     return snowman_word_dict
 
-def print_word_progress_string(snowman_word, snowman_word_dict):
-    output_str = ""
+# def print_word_progress_string(snowman_word, snowman_word_dict):
+#     # snowman_word = "lookout"
+#     output_str = ""
+#     # snowman_word_dict = {'l': True, 'o': False, 'k': True, 'u': False, 't': False}
+#     # new_string = ""
+#     for letter in snowman_word:
+#         if snowman_word_dict[letter]:
+#             output_str.append(letter)
+#         else:
+#             output_str.append("_")
+#     output_str = output_str[:-1]
+#     print(output_str)
 
-    for letter in snowman_word:
-        if snowman_word_dict[letter]:
-            output_str += f'{letter} '
-        else:
-            output_str += f'_ '
-    output_str = output_str[:-1]
-    print(output_str)
+# # print_word_progress_string(snowman_word, snowman_word_dict)
 
-def get_word_progress(snowman_word, snowman_word_dict):
+# def get_word_progress(snowman_word, snowman_word_dict):
+#     # word="lookout"
+#     # snowman_word_dict = {'l': True, 'o': True, 'k': True, 'u': False, 't': False}
+#     for letter in snowman_word:
+#         if not snowman_word_dict[letter]:
+#             return False
+#     return True
 
-    for letter in snowman_word:
-        if not snowman_word_dict[letter]:
-            return False
-    return True
-  
+# get_word_progress()   
 
 
 snowman()
