@@ -4,7 +4,7 @@ from wonderwords import RandomWord
 
 
 # Constant variable that references the hidden word 
-SNOWMAN_MAX_WRONG_GUESSES = 7
+SNOWMAN_WRONG_GUESSES = 7
 SNOWMAN_MAX_WORD_LENGTH = 8
 SNOWMAN_MIN_WORD_LENGTH = 5
 
@@ -41,7 +41,7 @@ def print_snowman_graphic(num_wrong_guesses):
     ]
     
     # Loop from 0 up to the minimum of num_wrong_guesses and SNOWMAN_WRONG_GUESSES
-    for i in range(min(num_wrong_guesses, SNOWMAN_MAX_WRONG_GUESSES)):
+    for i in range(min(num_wrong_guesses, SNOWMAN_WRONG_GUESSES)):
         print(SNOWMAN_GRAPHIC[i])
 
 
@@ -57,7 +57,7 @@ def snowman():
     wrong_guesses_list = []
     wrong_guesses_str = ""
 
-    while len(wrong_guesses_list) < SNOWMAN_MAX_WRONG_GUESSES:
+    while len(wrong_guesses_list) < SNOWMAN_WRONG_GUESSES:
         all_letters_guessed = get_word_progress(snowman_word, snowman_word_dict) 
          
         if all_letters_guessed:
@@ -81,8 +81,8 @@ def snowman():
         # print(snowman_word_dict)
         # print(f'all_letters_guessed: {all_letters_guessed}')
 
-    if len(wrong_guesses_list) >= SNOWMAN_MAX_WRONG_GUESSES:
-        print(f"Sorry, you lose! The word was {snowman_word}!")
+    if len(wrong_guesses_list) >= SNOWMAN_WRONG_GUESSES:
+        print(f"Game Over! You're out of guesses!")
 
 def build_word_dict(snowman_word):
     snowman_word_dict = {}
@@ -110,6 +110,7 @@ def get_word_progress(snowman_word, snowman_word_dict):
         if not snowman_word_dict[letter]:
             return False
     return True
+  
 
 
 snowman()

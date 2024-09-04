@@ -82,7 +82,7 @@ def snowman():
         # print(f'all_letters_guessed: {all_letters_guessed}')
 
     if len(wrong_guesses_list) >= SNOWMAN_MAX_WRONG_GUESSES:
-        print(f"Sorry, you lose! The word was {snowman_word}!")
+        print(f"Game Over! You're out of guesses!")
 
 def build_word_dict(snowman_word):
     snowman_word_dict = {}
@@ -110,6 +110,7 @@ def get_word_progress(snowman_word, snowman_word_dict):
         if not snowman_word_dict[letter]:
             return False
     return True
+  
 
 
 snowman()
